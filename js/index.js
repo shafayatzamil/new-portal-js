@@ -46,7 +46,7 @@ const displayData=(catagories)=>{
 
           <span class="ms-5">  <i class="fa-sharp fa-solid fa-eye"></i> views:${element.total_view?element.total_view:'No views found'}</span>
 
-          <button  onclick="loadModal('${element._id}')"type="button" class="btn btn-info ms-5">Show more</button>
+          <button  onclick="loadModal('${element._id}')"type="button" class="btn btn-info ms-5" data-bs-toggle="modal" data-bs-target="#newsDetailsModal">Show more</button>
           </div>
         </div> 
         `
@@ -63,6 +63,18 @@ const loadModal= async(id)=>{
 }
 
 const displayModal=(modal)=>{
+
     console.log(modal);
+    const modalTitle= document.getElementById('newsDetailsModalLabel');
+    modalTitle.innerText= modal.title;
+
+    const modalBody= document.getElementById('modal-body');
+    modalBody.innerHTML=`
+    <img src="${modal.thumbnail_url}" class="img-fluid">
+    <p> ${modal.details}</p>
+
+    
+    `
+    
 }
 loadCatagories();
