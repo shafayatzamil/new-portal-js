@@ -25,17 +25,25 @@ const loadData= async (id)=>{
     displayData(data.data);
 }
 const displayData=(catagories)=>{
-    console.log(catagories);
+    // console.log(catagories);
     catagories.forEach(element => {
+        console.log(element);
+
         const newsBox= document.getElementById('news-box');
         const newsDiv= document.createElement('div');
         newsDiv.classList.add('col');
         newsDiv.innerHTML=`
         <div class="card">
-        <img src="..." class="card-img-top" alt="...">
+        <img src="${element.image_url}" class="card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          <h5 class="card-title">${element.title}</h5>
+          <p class="card-text">${element.details.slice(0,200)}...</p>
+          <div>
+          <img src="${element.author.img}" class=" w-25 rounded-circle">
+          <span>${element.author.name? element.author.name:'No name Found'}</span>
+
+          <span class="ms-5"> views:${element.total_view?element.total_view:'No views found'}</span>
+          </div>
         </div>
         `
         newsBox.appendChild(newsDiv);
