@@ -27,7 +27,7 @@ const loadData= async (id)=>{
 const displayData=(catagories)=>{
     // console.log(catagories);
     catagories.forEach(element => {
-        console.log(element);
+        // console.log(element);
 
         const newsBox= document.getElementById('news-box');
         const newsDiv= document.createElement('div');
@@ -39,15 +39,30 @@ const displayData=(catagories)=>{
           <h5 class="card-title">${element.title}</h5>
           <p class="card-text">${element.details.slice(0,200)}...</p>
           <div>
+          <div class="d-flex">
           <img src="${element.author.img}" class=" w-25 rounded-circle">
+          </div>
           <span>${element.author.name? element.author.name:'No name Found'}</span>
 
-          <span class="ms-5"> views:${element.total_view?element.total_view:'No views found'}</span>
+          <span class="ms-5">  <i class="fa-sharp fa-solid fa-eye"></i> views:${element.total_view?element.total_view:'No views found'}</span>
+
+          <button  onclick="loadModal('${element._id}')"type="button" class="btn btn-info ms-5">Show more</button>
           </div>
-        </div>
+        </div> 
         `
         newsBox.appendChild(newsDiv);
     });
 }
 
+
+const loadModal= async(id)=>{
+    const url=`https://openapi.programming-hero.com/api/news/${id}`;
+    const res= await fetch(url);
+    const data= await res.json();
+    displayModal(data.data[0]);
+}
+
+const displayModal=(modal)=>{
+    console.log(modal);
+}
 loadCatagories();
