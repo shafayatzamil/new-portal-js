@@ -25,7 +25,19 @@ const loadData= async (id)=>{
     displayData(data.data);
 }
 const displayData=(catagories)=>{
-    // console.log(catagories);
+    console.log(catagories);
+    const foundCatagories= document.getElementById('found-catagories');
+    const foundMessage= document.getElementById('found-message');
+    if(catagories.length!=0){
+        console.log('wow');
+        foundCatagories.classList.remove('d-none');
+        foundMessage.innerText=`${catagories.length} result are fround`;
+    }else{
+        foundCatagories.classList.remove('d-none');
+        foundMessage.innerText=`${catagories.length} result are fround`;
+
+    }
+
     catagories.forEach(element => {
         // console.log(element);
 
