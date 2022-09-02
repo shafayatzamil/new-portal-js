@@ -1,3 +1,4 @@
+// load All catagories
 const loadCatagories= async()=>{
     const url=`https://openapi.programming-hero.com/api/news/categories`;
     const res= await fetch(url);
@@ -5,6 +6,7 @@ const loadCatagories= async()=>{
     displayCatagories(data.data.news_category);
 }
 
+// load catagories set
 const displayCatagories=(allnews)=>{
     allnews.map(news=> {
         const catagories= document.getElementById('catagoris');
@@ -12,24 +14,25 @@ const displayCatagories=(allnews)=>{
         catagoriesDiv.classList.add('col');
         catagoriesDiv.innerHTML=`
         <p onclick="loadData(${news.category_id})">${news.category_name}</p>
-        `
+        `;
         catagories.appendChild(catagoriesDiv);
     });
+    
 }
-
-
+// load individual catagories news
 const loadData= async (id)=>{
     const url=`https://openapi.programming-hero.com/api/news/category/0${id}`;
     const res= await fetch(url);
     const data= await res.json();
     displayData(data.data);
 }
+// display individual news
 const displayData=(catagories)=>{
     console.log(catagories);
     const foundCatagories= document.getElementById('found-catagories');
     const foundMessage= document.getElementById('found-message');
+    // catagories  legth box setup
     if(catagories.length!=0){
-        console.log('wow');
         foundCatagories.classList.remove('d-none');
         foundMessage.innerText=`${catagories.length} result are fround`;
     }else{
@@ -40,7 +43,6 @@ const displayData=(catagories)=>{
 
     catagories.forEach(element => {
         // console.log(element);
-
         const newsBox= document.getElementById('news-box');
         const newsDiv= document.createElement('div');
         newsDiv.classList.add('col');
@@ -63,10 +65,11 @@ const displayData=(catagories)=>{
         </div> 
         `
         newsBox.appendChild(newsDiv);
+        toogleSpinner(false);
     });
 }
 
-
+// set a modal data
 const loadModal= async(id)=>{
     const url=`https://openapi.programming-hero.com/api/news/${id}`;
     const res= await fetch(url);
@@ -74,6 +77,8 @@ const loadModal= async(id)=>{
     displayModal(data.data[0]);
 }
 
+
+// showing modal data
 const displayModal=(modal)=>{
 
     console.log(modal);
@@ -84,9 +89,15 @@ const displayModal=(modal)=>{
     modalBody.innerHTML=`
     <img src="${modal.thumbnail_url}" class="img-fluid">
     <p> ${modal.details}</p>
-
-    
     `
-    
+}
+
+const toogleSpinner=isloading=>{
+    const spinner= document.getElementById('spinner');
+    if(isloading){
+        spinner.classList.remove('d-none');
+    }else{
+        spinner.classList.add('d-none');
+    }
 }
 loadCatagories();
