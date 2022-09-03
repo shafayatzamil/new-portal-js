@@ -1,9 +1,14 @@
 // load All catagories
 const loadCatagories= async()=>{
     const url=`https://openapi.programming-hero.com/api/news/categories`;
-    const res= await fetch(url);
-    const data= await res.json();
-    displayCatagories(data.data.news_category);
+    try{
+        const res= await fetch(url);
+        const data= await res.json();
+        displayCatagories(data.data.news_category);
+    }catch(err){
+        console.log(err);
+    }
+   
 }
 
 // load catagories set
@@ -22,9 +27,15 @@ const displayCatagories=(allnews)=>{
 // load individual catagories news
 const loadData= async (id)=>{
     const url=`https://openapi.programming-hero.com/api/news/category/0${id}`;
-    const res= await fetch(url);
-    const data= await res.json();
-    displayData(data.data);
+
+    try{
+        const res= await fetch(url);
+        const data= await res.json();
+        displayData(data.data);
+    }catch(err){
+        console.log(err);
+    }
+    
 }
 // display individual news
 const displayData=(catagories)=>{
@@ -72,9 +83,14 @@ const displayData=(catagories)=>{
 // set a modal data
 const loadModal= async(id)=>{
     const url=`https://openapi.programming-hero.com/api/news/${id}`;
-    const res= await fetch(url);
-    const data= await res.json();
-    displayModal(data.data[0]);
+    try{
+        const res= await fetch(url);
+        const data= await res.json();
+        displayModal(data.data[0]);
+    }catch{
+        console.log(err);
+    }
+    
 }
 
 
