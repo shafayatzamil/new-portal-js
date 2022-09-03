@@ -39,7 +39,12 @@ const loadData= async (id)=>{
 }
 // display individual news
 const displayData=(catagories)=>{
-    console.log(catagories);
+    // console.log(catagories);
+    const myArray= catagories;
+    myArray.sort((a, b) => a - b);
+    console.log(myArray);
+
+
     const foundCatagories= document.getElementById('found-catagories');
     const foundMessage= document.getElementById('found-message');
     // catagories  legth box setup
