@@ -19,7 +19,7 @@ const displayCatagories=(allnews)=>{
         const catagories= document.getElementById('catagoris');
         const catagoriesDiv= document.createElement('div');
         catagoriesDiv.classList.add('col');
-        toogleSpinner(true);
+        // toogleSpinner(true);
         catagoriesDiv.innerHTML=`
         <p onclick="loadData(${news.category_id})">${news.category_name}
         </p>
@@ -45,6 +45,8 @@ const loadData= async (id)=>{
 // display individual news
 const displayData=(catagories)=>{
     // console.log(catagories);
+    const newsBox= document.getElementById('news-box');
+    newsBox.textContent='';
 
     // sort try krci
     const myArray= catagories;
@@ -64,9 +66,10 @@ const displayData=(catagories)=>{
 
     }
 
+
     catagories.forEach(element => {
         // console.log(element);
-        const newsBox= document.getElementById('news-box');
+
         const newsDiv= document.createElement('div');
         newsDiv.classList.add('col');
         newsDiv.innerHTML=`
@@ -129,3 +132,7 @@ const toogleSpinner=isloading=>{
     }
 }
 loadCatagories();
+
+document.getElementById('catagoris').addEventListener('click',function(){
+    toogleSpinner(true);
+})
