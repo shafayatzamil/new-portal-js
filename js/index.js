@@ -12,15 +12,17 @@ const loadCatagories= async()=>{
 }
 
 
- const spinner= document.getElementById('spinner');
+
 // load catagories set
 const displayCatagories=(allnews)=>{
     allnews.map(news=> {
         const catagories= document.getElementById('catagoris');
         const catagoriesDiv= document.createElement('div');
         catagoriesDiv.classList.add('col');
+        toogleSpinner(true);
         catagoriesDiv.innerHTML=`
-        <p onclick="loadData(${news.category_id})">${news.category_name}</p>
+        <p onclick="loadData(${news.category_id})">${news.category_name}
+        </p>
         `;
 
         catagories.appendChild(catagoriesDiv);
@@ -86,7 +88,7 @@ const displayData=(catagories)=>{
         </div> 
         `
         newsBox.appendChild(newsDiv);
-        // toogleSpinner(false);
+        toogleSpinner(false);
     });
 }
 
