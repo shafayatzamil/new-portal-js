@@ -36,7 +36,14 @@ const loadData= async (id)=>{
     try{
         const res= await fetch(url);
         const data= await res.json();
-        displayData(data.data);
+        const datas= data.data;
+         // sort try krci
+        datas.sort((a,b)=>{
+            return b.total_view-a.total_view;
+        })
+        displayData(datas);
+        
+
     }catch(err){
         console.log(err);
     }
@@ -48,10 +55,8 @@ const displayData=(catagories)=>{
     const newsBox= document.getElementById('news-box');
     newsBox.textContent='';
 
-    // sort try krci
-    const myArray= catagories;
-    myArray.sort((a, b) => a - b);
-    console.log(myArray);
+   
+  
 
 
     const foundCatagories= document.getElementById('found-catagories');
