@@ -11,6 +11,8 @@ const loadCatagories= async()=>{
    
 }
 
+
+ const spinner= document.getElementById('spinner');
 // load catagories set
 const displayCatagories=(allnews)=>{
     allnews.map(news=> {
@@ -20,6 +22,7 @@ const displayCatagories=(allnews)=>{
         catagoriesDiv.innerHTML=`
         <p onclick="loadData(${news.category_id})">${news.category_name}</p>
         `;
+
         catagories.appendChild(catagoriesDiv);
     });
     
@@ -40,6 +43,8 @@ const loadData= async (id)=>{
 // display individual news
 const displayData=(catagories)=>{
     // console.log(catagories);
+
+    // sort try krci
     const myArray= catagories;
     myArray.sort((a, b) => a - b);
     console.log(myArray);
@@ -81,7 +86,7 @@ const displayData=(catagories)=>{
         </div> 
         `
         newsBox.appendChild(newsDiv);
-        toogleSpinner(false);
+        // toogleSpinner(false);
     });
 }
 
